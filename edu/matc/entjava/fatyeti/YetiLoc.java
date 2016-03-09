@@ -1,4 +1,4 @@
-package edu.matc.java113.FatYeti;
+package edu.matc.java113.fatyeti;
 
 /**
  * @author Matthew R. Trower
@@ -6,6 +6,7 @@ package edu.matc.java113.FatYeti;
  * TODO: comment
  */
 public class YetiLoc {
+    // Stored in signed decimal degrees
     private final double longitude;
     private final double latitude;
 
@@ -26,7 +27,15 @@ public class YetiLoc {
         return longitude;
     }
 
+    public double lonR() {
+        return Math.toRadians(longitude);
+    }
+
     public double lat() {
         return latitude;
+    }
+
+    public double latR() {
+        return Math.toRadians(latitude);
     }
 }
