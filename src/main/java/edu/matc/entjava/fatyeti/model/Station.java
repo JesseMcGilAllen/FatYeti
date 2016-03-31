@@ -1,4 +1,4 @@
-package edu.matc.entjava.fatyeti.controller;
+package edu.matc.entjava.fatyeti.model;
 
 /**
  * Created by jessemcgilallen on 3/22/16.
