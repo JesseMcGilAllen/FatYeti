@@ -7,9 +7,9 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>fatyeti</groupId>
+    <groupId>edu.matc.entjava.fatyeti</groupId>
     <artifactId>fatyeti</artifactId>
-    <name>fatyeti project</name>
+    <name>FatYeti Snowfall Reporter</name>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
