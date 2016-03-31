@@ -1,6 +1,6 @@
-package main.java.com.fatyeti.controller;
+package edu.matc.entjava.fatyeti.controller;
 
-import main.java.com.fatyeti.entity.Station;
+import edu.matc.entjava.fatyeti.entity.Station;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
