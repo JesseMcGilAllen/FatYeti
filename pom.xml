@@ -9,7 +9,9 @@
 
     <groupId>edu.matc.entjava.fatyeti</groupId>
     <artifactId>fatyeti</artifactId>
+    <packaging>war</packaging>
     <name>FatYeti Snowfall Reporter</name>
+    <url>http://sol.blackshard.net:11388/FatYeti</url>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -39,6 +41,7 @@
     </dependencies>
 
     <build>
+        <finalName>FatYeti</finalName>
         <plugins>
             <plugin>
                 <groupId>org.codehaus.gmaven</groupId>
