@@ -1,4 +1,4 @@
-package edu.matc.entjava.model;
+package edu.matc.entjava.fatyeti.model;
 
 /**
  * @author Matthew R. Trower
