@@ -1,11 +1,13 @@
 package edu.matc.entjava.fatyeti.model;
 
+import edu.matc.entjava.fatyeti.entity.Location;
+
 /**
  * Created by jessemcgilallen on 3/22/16.
  */
 public class Station {
 
-    private String coordinates;
+    private Location location;
     private String description;
     private Double snowfallInches;
     private Double durationHours;
@@ -15,16 +17,17 @@ public class Station {
 
     }
 
-    public String getCoordinates() {
-        return coordinates;
+    public Location getLocation() {
+        return location;
     }
 
     /**
-     * @param coordinates
+     * @param location
      */
-    public void setCoordinates(String coordinates) {
-        this.coordinates = coordinates;
+    public void setLocation(Location location) {
+        this.location = location;
     }
+
 
     public String getDescription() {
         return description;
@@ -73,7 +76,7 @@ public class Station {
     @Override
     public String toString() {
         return "Station{" +
-                "coordinates='" + coordinates + '\'' +
+                "location='" + location + '\'' +
                 ", description='" + description + '\'' +
                 ", snowfallInches=" + snowfallInches +
                 ", durationHours=" + durationHours +

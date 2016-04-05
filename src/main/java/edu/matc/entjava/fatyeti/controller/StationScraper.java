@@ -1,6 +1,7 @@
 package edu.matc.entjava.fatyeti.controller;
 
 import edu.matc.entjava.fatyeti.model.Station;
+import edu.matc.entjava.fatyeti.entity.Location;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -114,7 +115,7 @@ public class StationScraper {
         Element elevationCell = cells.get(4);
         Element descriptionCell = cells.last();
 
-        station.setCoordinates(coordinatesFromCell(coordinatesCell));
+        station.setLocation(coordinatesFromCell(coordinatesCell));
         station.setDescription(stringForCell(descriptionCell));
         station.setSnowfallInches(doubleFromString(stringForCell(snowfallCell)));
         station.setDurationHours(doubleFromString(stringForCell(durationCell)));
@@ -123,12 +124,29 @@ public class StationScraper {
         return station;
     }
 
+    private Location locationUsing(String coordinates) {
+        Location location;
+
+        String cleanedCoordinates = coordinates.replaceAll("([()]|N|W|E|S)", "");
+
+        String[] individualCoordinates = cleanedCoordinates.split(",");
+
+        Double lat = Double.parseDouble(individualCoordinates[0]);
+        Double lng = Double.parseDouble(individualCoordinates[1]);
+
+        location = new Location(lat, lng);
+
+        return location;
+    }
+
     private Elements rowCells(Element row) {
         return row.select("td");
     }
 
-    private String coordinatesFromCell(Element cell) {
-        return cell.attr("title");
+    private Location coordinatesFromCell(Element cell) {
+        String coordinates = cell.attr("title");
+
+        return locationUsing(coordinates);
     }
 
     private String stringForCell(Element cell) {

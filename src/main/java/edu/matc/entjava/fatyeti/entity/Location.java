@@ -20,6 +20,11 @@ public class Location {
         this.lng = 0.0;
     }
 
+    public Location(Double lat, Double lng) {
+        this.lat = lat;
+        this.lng = lng;
+    }
+
     public Map<String, Object> getAdditionalProperties() {
         return this.additionalProperties;
     }
