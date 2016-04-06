@@ -1,4 +1,4 @@
-package edu.matc.entjava.fatyeti.entity;
+package edu.matc.entjava.fatyeti.model;
 
 /**
  * Created by cdperry on 4/3/16.
@@ -9,10 +9,12 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Generated("org.jsonschema2pojo")
-public class Northeast {
+public class Geometry {
 
-    public Double lat;
-    public Double lng;
+    public Bounds bounds;
+    public Location location;
+    public String locationType;
+    public Viewport viewport;
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     public Map<String, Object> getAdditionalProperties() {
@@ -21,6 +23,10 @@ public class Northeast {
 
     public void setAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
+    }
+
+    public Location getLocation() {
+        return this.location;
     }
 
 }

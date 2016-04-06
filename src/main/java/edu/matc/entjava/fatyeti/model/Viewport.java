@@ -1,4 +1,4 @@
-package edu.matc.entjava.fatyeti.entity;
+package edu.matc.entjava.fatyeti.model;
 
 /**
  * Created by cdperry on 4/3/16.

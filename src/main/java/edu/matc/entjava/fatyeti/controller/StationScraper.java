@@ -1,7 +1,7 @@
 package edu.matc.entjava.fatyeti.controller;
 
 import edu.matc.entjava.fatyeti.model.Station;
-import edu.matc.entjava.fatyeti.entity.Location;
+import edu.matc.entjava.fatyeti.model.Location;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

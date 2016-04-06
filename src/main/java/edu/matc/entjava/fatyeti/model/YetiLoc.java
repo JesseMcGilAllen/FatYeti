@@ -1,9 +1,6 @@
 package edu.matc.entjava.fatyeti.model;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import edu.matc.entjava.fatyeti.entity.GoogleGeoCodeResponse;
-import edu.matc.entjava.fatyeti.entity.Location;
-import edu.matc.entjava.fatyeti.entity.Result;
 
 import java.net.MalformedURLException;
 import java.net.URL;

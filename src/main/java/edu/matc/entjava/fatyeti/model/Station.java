@@ -1,7 +1,5 @@
 package edu.matc.entjava.fatyeti.model;
 
-import edu.matc.entjava.fatyeti.entity.Location;
-
 /**
  * Created by jessemcgilallen on 3/22/16.
  */

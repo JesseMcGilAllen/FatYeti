@@ -1,19 +1,19 @@
-package edu.matc.entjava.fatyeti.entity;
-
-import java.util.*;
-import javax.annotation.Generated;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import edu.matc.entjava.fatyeti.entity.Result;
+package edu.matc.entjava.fatyeti.model;
 
 /**
  * Created by cdperry on 4/3/16.
  */
+import java.util.*;
+import javax.annotation.Generated;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Generated("org.jsonschema2pojo")
-public class GoogleGeoCodeResponse {
+public class AddressComponent {
 
-    public List<Result> results = new ArrayList<Result>();
-    public String status;
+    public String longName;
+    public String shortName;
+    public List<String> types = new ArrayList<String>();
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     public Map<String, Object> getAdditionalProperties() {
@@ -22,14 +22,6 @@ public class GoogleGeoCodeResponse {
 
     public void setAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
-    }
-
-    public List<Result> getResults() {
-        return this.results;
-    }
-
-    public String getStatus() {
-        return this.status;
     }
 
 }
