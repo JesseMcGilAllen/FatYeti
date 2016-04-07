@@ -5,6 +5,7 @@ package edu.matc.entjava.fatyeti.model;
  */
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.io.*;
 import java.util.*;
 import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -18,11 +19,14 @@ public class Location {
     public Double lng;
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
     private boolean latLongDefined;
+    private Properties properties;
 
     public Location() {
         this.lat = 0.0;
         this.lng = 0.0;
         latLongDefined = false;
+        loadPropertiesFile("~/IdeaProjects/FatYeti/src/main/resources/fatyeti.properties");
+        System.out.println("Name: " + properties.getProperty("application.name"));
     }
 
     public Location(Double lat, Double lng) {
@@ -104,6 +108,21 @@ public class Location {
             ex.printStackTrace();
         } catch (Exception ex) {
             ex.printStackTrace();
+        }
+
+    }
+
+    private void loadPropertiesFile(String propertiesFilePath) {
+
+        properties = new Properties();
+
+        try {
+            properties.load(this.getClass().getResourceAsStream(
+                    propertiesFilePath));
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        } catch (Exception exception) {
+            exception.printStackTrace();
         }
 
     }
