@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import edu.matc.entjava.fatyeti.model.Location;
 import edu.matc.entjava.fatyeti.model.YetiLoc;
 
 /**
@@ -36,18 +37,23 @@ public class ZIP extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = null;
-        YetiLoc yeti;
+        //YetiLoc yeti;
+        Location location;
         String zipCode;
         String url;
 
         url = "index.jsp";
         zipCode = request.getParameter("zipCode");
         session = request.getSession();
-        yeti = new YetiLoc(zipCode);
+        //yeti = new YetiLoc(zipCode);
+        location = new Location(zipCode);
 
-        if (yeti.getResultsFound()) {
-            session.setAttribute("latitude", yeti.lat());
-            session.setAttribute("longitude", yeti.lon());
+        //if (yeti.getResultsFound()) {
+        if (location.isLatLongDefined()) {
+            //session.setAttribute("latitude", yeti.lat());
+            //session.setAttribute("longitude", yeti.lon());
+            session.setAttribute("latitude", location.getLat());
+            session.setAttribute("longitude", location.getLng());
             session.setAttribute("errorMessage", "");
         } else {
             session.setAttribute("errorMessage", "No results returned from Google.");
