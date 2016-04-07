@@ -73,10 +73,10 @@ public class Station {
     @Override
     public String toString() {
         return "Station{" +
-                "location='" + location.lat + ' ' + location.lng + '\'' +
+                "location= Lat: " + location.lat + " Long: " + location.lng +
                 ", description='" + description + '\'' +
-                ", date='" + lastUpdatedDate + '\'' +
-                ", snowfallInches=" + snowfallDepth +
+                ", lastUpdatedDate=" + lastUpdatedDate +
+                ", snowfallDepth=" + snowfallDepth +
                 ", elevationFeet=" + elevationFeet +
                 '}';
     }
