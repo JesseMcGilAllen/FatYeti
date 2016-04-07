@@ -25,8 +25,6 @@ public class Location {
         this.lat = 0.0;
         this.lng = 0.0;
         latLongDefined = false;
-        loadPropertiesFile("~/IdeaProjects/FatYeti/src/main/resources/fatyeti.properties");
-        System.out.println("Name: " + properties.getProperty("application.name"));
     }
 
     public Location(Double lat, Double lng) {
@@ -40,9 +38,8 @@ public class Location {
      * @param zipCode a String representation of a postal code.
      */
     public Location(String zipCode) {
-
+        loadPropertiesFile("/fatyeti.properties");
         this.translateZIPtoLatLong(zipCode);
-
     }
 
     public Map<String, Object> getAdditionalProperties() {
@@ -83,8 +80,7 @@ public class Location {
         GoogleGeoCodeResponse googleMapsResponse;
         List<Result> results;
 
-
-        API = "http://maps.googleapis.com/maps/api/geocode/json?address="
+        API = properties.getProperty("url.google.maps.api") + "?address="
                 + zipCode
                 + "&components=postal_code:"
                 + zipCode;
