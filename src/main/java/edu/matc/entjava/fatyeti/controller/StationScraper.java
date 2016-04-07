@@ -11,6 +11,9 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,7 +49,7 @@ public class StationScraper {
     }
 
     private String noaaUrl() {
-        return "http://www.nohrsc.noaa.gov/nsa/reports.html?region=National&var=snowfall&sort=value&units=e";
+        return "http://www.nohrsc.noaa.gov/nsa/reports.html?region=National&var=snowdepth";
     }
 
     private Document htmlDocumentFromUrl(String url) throws IOException {
@@ -100,25 +103,26 @@ public class StationScraper {
         Station station = new Station();
 
         Elements cells = rowCells(row);
+        Integer rowSize = 5;
 
         /**
          *  checks that row contains a full set of information
-         *  6 tds per tr
+         *  5 tds per tr
          */
-        if (cells.size() != 6) {
+        if (cells.size() != rowSize) {
             return null;
         }
 
         Element coordinatesCell = cells.first();
+        Element dateCell = cells.get(1);
         Element snowfallCell = cells.get(2);
-        Element durationCell = cells.get(3);
-        Element elevationCell = cells.get(4);
+        Element elevationCell = cells.get(3);
         Element descriptionCell = cells.last();
 
         station.setLocation(coordinatesFromCell(coordinatesCell));
         station.setDescription(stringForCell(descriptionCell));
-        station.setSnowfallInches(doubleFromString(stringForCell(snowfallCell)));
-        station.setDurationHours(doubleFromString(stringForCell(durationCell)));
+        station.setLastUpdatedDate(dateFromString(stringForCell(dateCell)));
+        station.setSnowfallDepth(doubleFromString(stringForCell(snowfallCell)));
         station.setElevationFeet(integerFromString(stringForCell(elevationCell)));
 
         return station;
@@ -151,6 +155,15 @@ public class StationScraper {
 
     private String stringForCell(Element cell) {
         return cell.text();
+    }
+
+    private LocalDate dateFromString(String string) {
+        String dateString = string.split(" ")[0];
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        LocalDate lastUpdated = LocalDate.parse(dateString, formatter);
+
+        return lastUpdated;
     }
 
     private Double doubleFromString(String string) {
