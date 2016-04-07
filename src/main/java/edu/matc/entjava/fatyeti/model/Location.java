@@ -17,16 +17,18 @@ public class Location {
     public Double lat;
     public Double lng;
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
-    private boolean resultsFound;
+    private boolean latLongDefined;
 
     public Location() {
         this.lat = 0.0;
         this.lng = 0.0;
+        latLongDefined = false;
     }
 
     public Location(Double lat, Double lng) {
         this.lat = lat;
         this.lng = lng;
+        latLongDefined = true;
     }
 
     /**
@@ -56,6 +58,15 @@ public class Location {
     }
 
     /**
+     * Returns an indicator as to whether or not latitude and longitude coordinates were set in the
+     * object.
+     * @return a boolean stating whether or not a latitude and longitude were set in the object.
+     */
+    public boolean isLatLongDefined() {
+        return this.latLongDefined;
+    }
+
+    /**
      * Given a ZIP code this method attempts to translate that ZIP code into a (latitude, longitude) coordinate
      * pair.
      * @param zipCode a text representation of a postal code to be sent to the Google Maps API
@@ -81,12 +92,12 @@ public class Location {
             results = googleMapsResponse.getResults();
 
             if (results.size() > 0) {
-                this.resultsFound = true;
+                this.latLongDefined = true;
                 Result result = results.get(0);
                 this.lat = result.getGeometry().getLocation().getLat();
                 this.lng = result.getGeometry().getLocation().getLng();
             } else {
-                this.resultsFound = false;
+                this.latLongDefined = false;
             }
 
         } catch (MalformedURLException ex) {
@@ -95,14 +106,6 @@ public class Location {
             ex.printStackTrace();
         }
 
-    }
-
-    /**
-     * Returns the status of the Google Maps API search for the passed ZIP code.
-     * @return a boolean stating whether or not a result was returned from the Google Maps API
-     */
-    public boolean getResultsFound() {
-        return this.resultsFound;
     }
 
     /**
