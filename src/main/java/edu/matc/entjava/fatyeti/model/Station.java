@@ -1,5 +1,7 @@
 package edu.matc.entjava.fatyeti.model;
 
+import java.time.LocalDate;
+
 /**
  * Created by jessemcgilallen on 3/22/16.
  */
@@ -7,8 +9,8 @@ public class Station {
 
     private Location location;
     private String description;
-    private Double snowfallInches;
-    private Double durationHours;
+    private LocalDate lastUpdatedDate;
+    private Double snowfallDepth;
     private Integer elevationFeet;
 
     public Station() {
@@ -38,26 +40,23 @@ public class Station {
         this.description = description;
     }
 
-    public Double getSnowfallInches() {
-        return snowfallInches;
+    public Double getSnowfallDepth() {
+        return snowfallDepth;
+    }
+
+    public LocalDate getLastUpdatedDate() {
+        return lastUpdatedDate;
+    }
+
+    public void setLastUpdatedDate(LocalDate lastUpdatedDate) {
+        this.lastUpdatedDate = lastUpdatedDate;
     }
 
     /**
-     * @param snowfallInches
+     * @param snowfallDepth
      */
-    public void setSnowfallInches(Double snowfallInches) {
-        this.snowfallInches = snowfallInches;
-    }
-
-    public Double getDurationHours() {
-        return durationHours;
-    }
-
-    /**
-     * @param durationHours
-     */
-    public void setDurationHours(Double durationHours) {
-        this.durationHours = durationHours;
+    public void setSnowfallDepth(Double snowfallDepth) {
+        this.snowfallDepth = snowfallDepth;
     }
 
     public Integer getElevationFeet() {
@@ -74,10 +73,10 @@ public class Station {
     @Override
     public String toString() {
         return "Station{" +
-                "location='" + location + '\'' +
+                "location='" + location.lat + ' ' + location.lng + '\'' +
                 ", description='" + description + '\'' +
-                ", snowfallInches=" + snowfallInches +
-                ", durationHours=" + durationHours +
+                ", date='" + lastUpdatedDate + '\'' +
+                ", snowfallInches=" + snowfallDepth +
                 ", elevationFeet=" + elevationFeet +
                 '}';
     }
