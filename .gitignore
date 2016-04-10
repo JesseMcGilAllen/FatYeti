@@ -37,3 +37,10 @@ fabric.properties
 
 # Ignore any log Files
 *.log
+
+# CLI development aids
+cscope.out
+tags
+
+# build directory
+/target/
