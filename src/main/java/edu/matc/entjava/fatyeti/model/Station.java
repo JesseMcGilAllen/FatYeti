@@ -1,7 +1,5 @@
 package edu.matc.entjava.fatyeti.model;
 
-import java.time.LocalDate;
-
 /**
  * Created by jessemcgilallen on 3/22/16.
  */
@@ -9,7 +7,7 @@ public class Station {
 
     private Location location;
     private String description;
-    private LocalDate lastUpdatedDate;
+    private String lastUpdatedDate;
     private Double snowfallDepth;
     private Integer elevationFeet;
 
@@ -44,11 +42,11 @@ public class Station {
         return snowfallDepth;
     }
 
-    public LocalDate getLastUpdatedDate() {
+    public String getLastUpdatedDate() {
         return lastUpdatedDate;
     }
 
-    public void setLastUpdatedDate(LocalDate lastUpdatedDate) {
+    public void setLastUpdatedDate(String lastUpdatedDate) {
         this.lastUpdatedDate = lastUpdatedDate;
     }
 

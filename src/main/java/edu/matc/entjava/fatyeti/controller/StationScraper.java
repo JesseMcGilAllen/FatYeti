@@ -11,9 +11,6 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -121,7 +118,7 @@ public class StationScraper {
 
         station.setLocation(coordinatesFromCell(coordinatesCell));
         station.setDescription(stringForCell(descriptionCell));
-        station.setLastUpdatedDate(dateFromString(stringForCell(dateCell)));
+        station.setLastUpdatedDate(stringForCell(dateCell));
         station.setSnowfallDepth(doubleFromString(stringForCell(snowfallCell)));
         station.setElevationFeet(integerFromString(stringForCell(elevationCell)));
 
@@ -155,15 +152,6 @@ public class StationScraper {
 
     private String stringForCell(Element cell) {
         return cell.text();
-    }
-
-    private LocalDate dateFromString(String string) {
-        String dateString = string.split(" ")[0];
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-        LocalDate lastUpdated = LocalDate.parse(dateString, formatter);
-
-        return lastUpdated;
     }
 
     private Double doubleFromString(String string) {
