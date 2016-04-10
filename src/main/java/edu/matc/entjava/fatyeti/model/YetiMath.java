@@ -1,5 +1,7 @@
 package edu.matc.entjava.fatyeti.model;
 
+import java.util.List;
+
 /**
  * @author Matthew R. Trower
  * class YetiMath
@@ -21,6 +23,21 @@ public class YetiMath {
         double Δλ = loc2.getLng() - loc1.getLng();
 
         return ptheorem_equilateral(φm, Δφ, Δλ, R);
+    }
+
+    public static Station findNearestStation(List<Station> stations, Location loc) {
+        Station nearestStation = null;
+
+        for (Station station: stations) {
+            if (    nearestStation == null ||
+                    SimpleDistance(       station.getLocation(), loc) <
+                    SimpleDistance(nearestStation.getLocation(), loc) ) {
+
+                nearestStation = station;
+            }
+        }
+
+        return nearestStation;
     }
 
     // Pythagoras' theorem on an equirectangular projection
