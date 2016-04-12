@@ -11,3 +11,5 @@ We may add additional features to this web service such as reporting minimum, av
 ## References
 - [NOAA.gov](http://www.nohrsc.noaa.gov/nsa/reports.html?region=National&var=snowfall&dy=2016&dm=3&dd=5&units=e&gui=1)
 - [Web services for computing geographical distance](https://www.geosvc.com/docs/Ref)
+
+## [API Documentation](./api_documentation.md)
