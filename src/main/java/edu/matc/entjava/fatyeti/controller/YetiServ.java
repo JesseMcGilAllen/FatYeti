@@ -25,8 +25,6 @@ import edu.matc.entjava.fatyeti.model.YetiMath;
 )
 public class YetiServ extends HttpServlet {
 
-    private Properties properties = null;
-
     public void init() throws ServletException {
 
     }
@@ -59,18 +57,6 @@ public class YetiServ extends HttpServlet {
         }
 
         out.close();
-    }
-
-    private void loadProperties(String fileSpec) {
-        properties = new Properties();
-
-        try {
-            properties.load(this.getClass().getResourceAsStream(fileSpec));
-        } catch (IOException ioException) {
-            ioException.printStackTrace();
-        } catch (Exception exception) {
-            exception.printStackTrace();
-        }
     }
 
     private void writeStation(JsonGenerator generator, Station station) {

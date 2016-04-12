@@ -19,7 +19,6 @@ public class Location {
     public Double lng;
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
     private boolean latLongDefined;
-    private Properties properties;
 
     public Location() {
         this.lat = 0.0;
@@ -38,7 +37,6 @@ public class Location {
      * @param zipCode a String representation of a postal code.
      */
     public Location(String zipCode) {
-        loadPropertiesFile("/fatyeti.properties");
         this.translateZIPtoLatLong(zipCode);
     }
 
@@ -80,7 +78,7 @@ public class Location {
         GoogleGeoCodeResponse googleMapsResponse;
         List<Result> results;
 
-        API = properties.getProperty("url.google.maps.api") + "?address="
+        API = YetiConfig.getProperty("url.google.maps.api") + "?address="
                 + zipCode
                 + "&components=postal_code:"
                 + zipCode;
@@ -104,21 +102,6 @@ public class Location {
             ex.printStackTrace();
         } catch (Exception ex) {
             ex.printStackTrace();
-        }
-
-    }
-
-    private void loadPropertiesFile(String propertiesFilePath) {
-
-        properties = new Properties();
-
-        try {
-            properties.load(this.getClass().getResourceAsStream(
-                    propertiesFilePath));
-        } catch (IOException ioException) {
-            ioException.printStackTrace();
-        } catch (Exception exception) {
-            exception.printStackTrace();
         }
 
     }
