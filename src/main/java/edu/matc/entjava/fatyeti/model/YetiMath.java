@@ -14,11 +14,11 @@ public class YetiMath {
     }
 
     // Fast and simple.  Imprecise, but more than good enough for this.
-    public static double SimpleDistance(YetiLoc loc1, YetiLoc loc2) {
+    public static double SimpleDistance(Location loc1, Location loc2) {
         int R = 6371000; // Earth's radius (M)
-        double φm = (loc1.latR() + loc2.latR()) / 2;
-        double Δφ = loc2.latR() - loc1.latR();
-        double Δλ = loc2.lonR() - loc1.lonR();
+        double φm = (loc1.getLat() + loc2.getLat()) / 2;
+        double Δφ = loc2.getLat() - loc1.getLat();
+        double Δλ = loc2.getLng() - loc1.getLng();
 
         return ptheorem_equilateral(φm, Δφ, Δλ, R);
     }
