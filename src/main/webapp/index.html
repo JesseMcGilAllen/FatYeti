@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fat Yeti</title>
+    <script language="javascript" type="text/javascript">
+        var request = null;
+
+        function createRequest() {
+            try {
+                request = new XMLHttpRequest();
+            } catch (trymicrosoft) {
+                try {
+                    request = new ActiveXObject("MsXML2.XMLHTTP");
+                } catch (othermicrosoft) {
+                    try {
+                        request = new ActiveXObject("Microsoft.XMLHTTP");
+                    } catch (failed) {
+                        request = null;
+                    }
+                }
+            }
+
+            if (request == null)
+                alert("Error creating request object!");
+        }
+
+        function getMessage()
+        {
+            createRequest();
+            var zipCode = document.getElementById("zipCode").value;
+            var API = document.getElementById("API").value;
+            var url = "http://localhost:8080/getSnowfall/"+API+"/"+zipCode;
+            request.onreadystatechange = handleResponse;
+            request.open("GET", url, true);
+            request.send(null);
+        }
+
+        function handleResponse() {
+            if (request.readyState==4 && request.status==200)
+            {
+                var det=eval("("+request.responseText+")");
+                document.getElementById('success').value="";
+                document.getElementById('errorMessage').value="";
+                document.getElementById('lastUpdatedDate').value="";
+                document.getElementById('snowfallDepth').value="";
+                document.getElementById('success').value=det.success;
+                document.getElementById('errorMessage').value=det.errorMessage;
+                document.getElementById('lastUpdatedDate').value=det.station.lastUpdatedDate;
+                document.getElementById('snowfallDepth').value=det.station.snowfallDepth;
+            }
+        }
+
+    </script>
+
+
+</head>
+<body>
+
+    <div class = "header">
+        <H1>Fat Yeti - Snow Depth JSON Test</H1>
+        <h2>Provide a ZIP code and I'll tell you the snow depth as reported by the nearest weather station</h2>
+    </div>
+
+    <div class = "datatable">
+        <table>
+            <tr>
+                <td>ZIP Code : </td>
+                <td><input type="text" id="zipCode" size="20"/>
+
+                    <input type="button" value="Get Snow Depth" onclick="getMessage()"/>
+            </tr>
+            <tr>
+                <td>API Version : </td>
+                <td> <input type="text" id="API" size="20" value="1.0"/> </td>
+            </tr>
+            <tr>
+                <td>Success : </td>
+                <td> <input type="text" id="success" size="20"/> </td>
+            </tr>
+            <tr>
+                <td>Last Update Date : </td>
+                <td> <input type="text" id="lastUpdatedDate" size="20"/> </td>
+            </tr>
+            <tr>
+                <td>Snow Depth : </td>
+                <td> <input type="text" id="snowfallDepth" size="20"/> </td>
+            </tr>
+            <tr>
+                <td>Error Message : </td>
+                <td> <input type="text" id="errorMessage" size="40"/> </td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+</html>
