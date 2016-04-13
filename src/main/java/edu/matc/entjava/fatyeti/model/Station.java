@@ -1,7 +1,8 @@
 package edu.matc.entjava.fatyeti.model;
 
 /**
- * Created by jessemcgilallen on 3/22/16.
+ * @author jessemcgilallen
+ * @version 1.0 04/12/16
  */
 public class Station {
 
