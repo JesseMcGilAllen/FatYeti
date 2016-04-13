@@ -31,9 +31,9 @@ public class YetiMath {
     public static double SimpleDistance(Location loc1, Location loc2) {
 
         int R = Integer.parseInt(YetiConfig.getProperty("radius.earth"));
-        double φm = (loc1.getLat() + loc2.getLat()) / 2;
-        double Δφ = loc2.getLat() - loc1.getLat();
-        double Δλ = loc2.getLng() - loc1.getLng();
+        double φm = (Math.toRadians(loc1.getLat()) + Math.toRadians(loc2.getLat())) / 2;
+        double Δφ = Math.toRadians(loc2.getLat()) - Math.toRadians(loc1.getLat());
+        double Δλ = Math.toRadians(loc2.getLng()) - Math.toRadians(loc1.getLng());
 
         return ptheorem_equilateral(φm, Δφ, Δλ, R);
 
