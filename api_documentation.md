@@ -4,6 +4,8 @@
 
 Fat Yeti is web service that returns the snow depth for a user-provided zipcode.  The user enters a zipcode and the nearest station data is returned as a JSON object.  The web service is provided in two forms - a standard HTML query string and a RESTful implementation.
 
+Distance between two latitude and longitude coordinate pairs is calculated using Pythagoras' theorm.  The results are returned in meters.
+
 ### BASE URL 
 http://sol.blackshard.net:11388/FatYeti
 
