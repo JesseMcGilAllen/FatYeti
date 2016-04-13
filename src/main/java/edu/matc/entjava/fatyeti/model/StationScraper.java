@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * This class is used to scrape the HTML response from NOAA's snow depth web page.
+ *
  * @author jessemcgilallen
  * @version 1.0 04/12/16
  */
@@ -54,7 +56,8 @@ public class StationScraper {
      * @return the url for the noaa webpage containing snow depth data
      */
     private String noaaUrl() {
-        return "http://www.nohrsc.noaa.gov/nsa/reports.html?region=National&var=snowdepth";
+        return YetiConfig.getProperty("url.noaa.snowdepth");
+        //return "http://www.nohrsc.noaa.gov/nsa/reports.html?region=National&var=snowdepth";
     }
 
     /**

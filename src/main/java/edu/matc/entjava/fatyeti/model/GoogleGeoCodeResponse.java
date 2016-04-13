@@ -5,7 +5,11 @@ import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
- * Created by cdperry on 4/3/16.
+ * This class is used to translate the Google Maps API JSON response into a Java object.  It is utilized by the
+ * Jackson library.
+ *
+ * @author cdperry
+ * @version 1.0 04/12/16
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Generated("org.jsonschema2pojo")

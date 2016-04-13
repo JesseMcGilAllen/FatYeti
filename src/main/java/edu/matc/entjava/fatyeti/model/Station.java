@@ -1,6 +1,10 @@
 package edu.matc.entjava.fatyeti.model;
 
 /**
+ * The Station class models information about a weather station as reported by NOAA. It contains information
+ * such as the weather station's coordinates (latitude/longitude), a description of the station, the snow depth
+ * reported by that station, the station's elevation and the last time this station's data was updated.
+ *
  * @author jessemcgilallen
  * @version 1.0 04/12/16
  */

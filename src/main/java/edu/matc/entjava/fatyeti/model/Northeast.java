@@ -7,6 +7,13 @@ import java.util.*;
 import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+/**
+ * This class models the 'northeast' component of the Google Maps API response.  It is used to help translate
+ * the Google Maps API JSON response into a Java object for further processing.
+ *
+ * @author cdperry
+ * @version 1.0 04/12/16
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Generated("org.jsonschema2pojo")
 public class Northeast {

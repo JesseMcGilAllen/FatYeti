@@ -11,6 +11,16 @@ import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * This class models the 'location' component of the Google Maps API response.  It is used to help translate
+ * the Google Maps API JSON response into a Java object for further processing.
+ *
+ * In addition this class contains functionality for translating a U.S. Postal Code (ZIP code) into a
+ * latitude/longitude coordinate pair.
+ *
+ * @author cdperry
+ * @version 1.0 04/12/16
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Generated("org.jsonschema2pojo")
 public class Location {
@@ -26,6 +36,11 @@ public class Location {
         latLongDefined = false;
     }
 
+    /**
+     * This constructor takes a latitude/longitude coordinate pair
+     * @param lat the latitude of the location
+     * @param lng the longitude of the location
+     */
     public Location(Double lat, Double lng) {
         this.lat = lat;
         this.lng = lng;
