@@ -42,10 +42,10 @@ http://sol.blackshard.net:11388/FatYeti
         }
         "description":"MADISON,WI",
         "lastUpdated":"2016-04-11 12",
-        "snowfallDepth":"0.0",
-        "stationElevation":"267"
+        "snowfallDepth":0.0,
+        "stationElevation":267
     },
-    "distanceToStation":"174146.72237568902"
+    "distanceToStation":174146.72237568902
 }
 ```
 
