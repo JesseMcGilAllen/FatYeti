@@ -13,6 +13,7 @@ public class Snowfall {
     private boolean isSuccess;
     private String errorMessage;
     private Station station;
+    private double distanceToStation;
 
     /**
      * no-arg constructor
@@ -28,10 +29,11 @@ public class Snowfall {
      * @param errorMessage if an error occurred during lat/long translation (or elsewhere) this will describe the error
      * @param station the closest weather station to the ZIP code of interest
      */
-    public Snowfall(boolean isSuccess, String errorMessage, Station station) {
+    public Snowfall(boolean isSuccess, String errorMessage, Station station, double distanceToStation) {
         this.isSuccess = isSuccess;
         this.errorMessage = errorMessage;
         this.station = station;
+        this.distanceToStation = distanceToStation;
     }
 
     public boolean isSuccess() {
@@ -56,6 +58,14 @@ public class Snowfall {
 
     public void setStation(Station station) {
         this.station = station;
+    }
+
+    public double getDistanceToStation() {
+        return distanceToStation;
+    }
+
+    public void setDistanceToStation(double distanceToStation) {
+        this.distanceToStation = distanceToStation;
     }
 
     @Override

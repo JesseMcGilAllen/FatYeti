@@ -16,7 +16,7 @@ import edu.matc.entjava.fatyeti.model.Snowfall;
  * @author cdperry
  * @version 1.0 04/12/16
  */
-@Path("/getSnowfall")
+@Path("/snowfallREST")
 public class YetiServREST {
 
     /**
@@ -36,12 +36,14 @@ public class YetiServREST {
         Location location = new Location(zipCode);
         String jsonResponse = "{}";
         Snowfall results;
+        double distanceToStation;
 
         if (location.isLatLongDefined()) {
             StationScraper scraper = new StationScraper();
             Station station =
                     YetiMath.findNearestStation(scraper.noaaStations(), location);
-            results = new Snowfall(true, "", station);
+            distanceToStation = YetiMath.SimpleDistance(station.getLocation(), location);
+            results = new Snowfall(true, "", station, distanceToStation);
         } else {
             results = new Snowfall();
             results.setSuccess(false);

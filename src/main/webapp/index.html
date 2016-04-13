@@ -30,7 +30,7 @@
             createRequest();
             var zipCode = document.getElementById("zipCode").value;
             var API = document.getElementById("API").value;
-            var url = "/getSnowfall/"+API+"/"+zipCode;
+            var url = "/snowfallREST/"+API+"/"+zipCode;
             request.onreadystatechange = handleResponse;
             request.open("GET", url, true);
             request.send(null);

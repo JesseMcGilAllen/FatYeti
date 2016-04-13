@@ -8,10 +8,9 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
-import edu.matc.entjava.fatyeti.model.Location;
-import edu.matc.entjava.fatyeti.model.Station;
-import edu.matc.entjava.fatyeti.model.StationScraper;
-import edu.matc.entjava.fatyeti.model.YetiMath;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.matc.entjava.fatyeti.model.*;
 
 /**
  * @author Matthew R. Trower
@@ -42,23 +41,60 @@ public class YetiServ extends HttpServlet {
 
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
-        JsonGenerator generator = Json.createGenerator(out);
-
+        //JsonGenerator generator = Json.createGenerator(out);
         Location location = new Location(request.getParameter("zipCode"));
+        String jsonResponse = "{}";
+        Snowfall results;
+        double distanceToStation;
 
         if (location.isLatLongDefined()) {
             StationScraper scraper = new StationScraper();
             Station station =
                 YetiMath.findNearestStation(scraper.noaaStations(), location);
-
-            writeStation(generator, station);
+            distanceToStation = YetiMath.SimpleDistance(station.getLocation(), location);
+            //writeStation(generator, station);
+            results = new Snowfall(true, "", station, distanceToStation);
         } else {
-            writeError(generator, "No results returned from Google.");
+            //writeError(generator, "No results returned from Google.");
+            results = new Snowfall();
+            results.setSuccess(false);
+            results.setErrorMessage("No results returned from Google Maps API");
         }
 
+        try {
+            jsonResponse = createJSON(results);
+        } catch (JsonProcessingException ex) {
+            jsonResponse = "{\"errorMessage\":\"Error encountered generating JSON\""
+                    + ",\"station\":null,\"success\":false}";
+        } catch (Exception ex) {
+            jsonResponse = "{\"errorMessage\":\"Unexpected exception encountered\""
+                    + ",\"station\":null,\"success\":false}";
+        }
+        out.println(jsonResponse);
         out.close();
     }
 
+    /**
+     * This is a helper method which converts a Snowfall object into a JSON response
+     *
+     * @param snowfall contains information about snow depth from the nearest weather station
+     * @return a JSON response string
+     * @throws JsonProcessingException
+     */
+    private String createJSON(Snowfall snowfall) throws JsonProcessingException {
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        return mapper.writeValueAsString(snowfall);
+
+    }
+
+    /**
+     * This is a helper method which translates Station information into a JSON response
+     *
+     * @param generator a JsonGenerator object
+     * @param station a Station object which contains information about snowfall
+     */
     private void writeStation(JsonGenerator generator, Station station) {
         generator
             .writeStartObject()
@@ -75,6 +111,13 @@ public class YetiServ extends HttpServlet {
         generator.close();
     }
 
+    /**
+     * This is a helper method that writes a dummy JSON object in case the Google
+     * geocoding call failed.
+     *
+     * @param generator a JsonGenerator object
+     * @param message an error message to be returned in the JSON response
+     */
     private void writeError(JsonGenerator generator, String message) {
         generator
             .writeStartObject()
