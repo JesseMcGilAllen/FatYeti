@@ -23,6 +23,7 @@ public class YetiMath {
      * This method determines the distance between two latitude/longitude
      * coordinate pairs using Pythagoras'
      * theorm.
+     *
      * @param loc1 a Location representing a latitude/longitude pair
      * @param loc2 another Location representing a latitude/longitude pair
      * @return the distance between loc1 and loc2
@@ -45,8 +46,8 @@ public class YetiMath {
      * latitude/longitude coordinate pairs.
      *
      * @param stations a list of Station objects
-     * @param loc a Location to which the distance to each Station should be
-     * measured
+     * @param loc      a Location to which the distance to each Station should be
+     *                 measured
      * @return the station that is closest to the given Location object
      */
     public static Station findNearestStation(List<Station> stations,
@@ -54,10 +55,10 @@ public class YetiMath {
 
         Station nearestStation = null;
 
-        for (Station station: stations) {
-            if (    nearestStation == null ||
-                    SimpleDistance(       station.getLocation(), loc) <
-                    SimpleDistance(nearestStation.getLocation(), loc) ) {
+        for (Station station : stations) {
+            if (nearestStation == null ||
+                    SimpleDistance(station.getLocation(), loc) <
+                            SimpleDistance(nearestStation.getLocation(), loc)) {
 
                 nearestStation = station;
             }
@@ -70,18 +71,20 @@ public class YetiMath {
     /**
      * This method implements Pythagoras' theorem on an equirectangular
      * projection
+     *
      * @param φm the mean latitude
      * @param Δφ the difference between the latitude components of the
-     * coordinate pair
+     *           coordinate pair
      * @param Δλ the difference between the longitude components of the
-     * coordinate pair
-     * @param R the radius of the sphere (Earth) on which the coordinates lie
+     *           coordinate pair
+     * @param R  the radius of the sphere (Earth) on which the coordinates lie
      * @return the distance between the latitude/longitude coordinate pairs
      */
     private static double ptheorem_equilateral(double φm, double Δφ,
-                                                double Δλ, double R) {
+                                               double Δλ, double R) {
         double x = Δλ * Math.cos(φm);
         double y = Δφ;
 
         return Math.sqrt(x * x + y * y) * R;
     }
+}
