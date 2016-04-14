@@ -1,10 +1,12 @@
 package edu.matc.entjava.fatyeti.model;
 
 import junit.framework.TestCase;
-
 import java.util.List;
 import java.io.File;
 import java.util.Properties;
+import edu.matc.entjava.fatyeti.model.StationScraper;
+import edu.matc.entjava.fatyeti.model.Station;
+import edu.matc.entjava.fatyeti.model.YetiConfig;
 
 
 /**

@@ -8,11 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import edu.matc.entjava.fatyeti.model.Location;
-import edu.matc.entjava.fatyeti.model.YetiLoc;
 
 /**
  *  <p>
- *  This servlet is used to test the YetiLoc class.  It allows the user to enter a ZIP code and will display the
+ *  This servlet is used to test the Location class.  It allows the user to enter a ZIP code and will display the
  *  latitude and longitude of the center of that ZIP code, provided the ZIP code is valid.
  *  </p>
  *  @author Chris Perry
@@ -37,7 +36,7 @@ public class ZIP extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = null;
-        //YetiLoc yeti;
+
         Location location;
         String zipCode;
         String url;
@@ -45,13 +44,13 @@ public class ZIP extends HttpServlet {
         url = "index.jsp";
         zipCode = request.getParameter("zipCode");
         session = request.getSession();
-        //yeti = new YetiLoc(zipCode);
+
         location = new Location(zipCode);
 
-        //if (yeti.getResultsFound()) {
+
         if (location.isLatLongDefined()) {
-            //session.setAttribute("latitude", yeti.lat());
-            //session.setAttribute("longitude", yeti.lon());
+
+
             session.setAttribute("latitude", location.getLat());
             session.setAttribute("longitude", location.getLng());
             session.setAttribute("errorMessage", "");

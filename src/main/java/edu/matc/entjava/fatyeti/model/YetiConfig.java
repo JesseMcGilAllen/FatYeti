@@ -18,7 +18,10 @@ public class YetiConfig {
     static {
         try {
             ClassLoader classLoader = YetiConfig.class.getClassLoader();
-            properties.load(classLoader.getResourceAsStream("/fatyeti.properties"));
+            InputStream inputStream = classLoader.getResourceAsStream("/fatyeti.properties");
+            if (inputStream != null) {
+                properties.load(inputStream);
+            }
         } catch (IOException ioe) {
             ioe.printStackTrace();
         } catch (Exception e) {

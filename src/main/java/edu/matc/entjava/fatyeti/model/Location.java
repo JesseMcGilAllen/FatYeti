@@ -122,8 +122,8 @@ public class Location {
     }
 
     /**
-     * This method creates a String showing the contents of the YetiLoc object.
-     * @return a String describing the YetiLoc object.
+     * This method creates a String showing the contents of the Location object.
+     * @return a String describing the Location object.
      */
     public String toString() {
         return "The coordinates are: "
